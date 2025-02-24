@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Simple Calculator</title>
+	<link href="" rel="stylesheet">
+	<style>
+		body{
+			background-color:violet;
+		}
+		.calculator{
+			width:350px;
+			margin:50px auto;
+			padding:20px;
+			border-radius:10px;
+			background-color:beige;
+			box-shadow:0 4px 8px rgba(0, 0,0,,0.2);
+		}
+		button{
+			width:70px;
+			margin:5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="Calculator text-center p-4">
+			<h3>Calculator</h3>
+			<input type="number" id="num1" class=class="form-control my-2" placeholder="Enter number 1">
+            <input type="number" id="num2" class="form-control my-2" placeholder="Enter number 2 (if required)">
+            
+            <div class="d-flex flex-wrap justify-content-center">
+                <button class="btn btn-primary" onclick="calculate('+')">+</button>
+                <button class="btn btn-primary" onclick="calculate('-')">-</button>
+                <button class="btn btn-primary" onclick="calculate('*')">×</button>
+                <button class="btn btn-primary" onclick="calculate('/')">÷</button>
+                <button class="btn btn-primary" onclick="calculate('%')">%</button>
+                <button class="btn btn-success" onclick="calculate('square')">x²</button>
+                <button class="btn btn-success" onclick="calculate('sqrt')">√x</button>
+                <button class="btn btn-success" onclick="calculate('cube')">x³</button>
+                <button class="btn btn-warning" onclick="calculate('power')">x^y</button>
+                <button class="btn btn-danger" onclick="calculate('reciprocal')">1/x</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let result;
+
+            if (isNaN(num1)) {
+                alert("Please enter at least one number!");
+                return;
+            }
+
+            switch (operation) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
+                    break;
+                case '%':
+                    result = num1 % num2;
+                    break;
+                case 'square':
+                    result = num1 ** 2;
+                    break;
+                case 'sqrt':
+                    result = num1 >= 0 ? Math.sqrt(num1) : "Invalid input!";
+                    break;
+                case 'cube':
+                    result = num1 ** 3;
+                    break;
+                case 'power':
+                    result = num1 ** num2;
+                    break;
+                case 'reciprocal':
+                    result = num1 !== 0 ? 1 / num1 : "Cannot divide by zero!";
+                    break;
+                default:
+                    result = "Invalid operation!";
+            }
+
+            console.log("Result:", result);
+            alert("Result: " + result);
+        }
+    </script>
+
+</body>
+</html>
